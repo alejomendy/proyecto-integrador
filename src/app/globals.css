@@ -25,3 +25,49 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.separar{
+  margin: 15px;
+}
+
+.topnav {
+  background-color: bisque;
+  overflow: hidden;
+}
+.topnav a {
+  float: left;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a.active {
+  background-color: blueviolet;
+  color: aliceblue;
+}
+div {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  
+}
+
+/* Estilos para la etiqueta del dropdown */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Estilos para el dropdown */
+select {
+  padding: 8px;
+  font-size: 16px;
+}
+
+/* Estilos para las opciones del dropdown */
+option {
+  font-size: 16px;
+}
+.textcolor{
+  color: black;
+}
