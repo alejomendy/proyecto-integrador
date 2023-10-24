@@ -14,12 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>    
-          <div className="topnav">
-              <a className="active" href="#home">Home</a>
-              <a href="./lo">Login</a>
-          </div>
-        </nav>
         
         {children}
       </body>

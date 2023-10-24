@@ -4,9 +4,15 @@ import Login from '../components/Login';
 
 function Logueo() {
   return (
-    <div className="Logueo">
-      <Login />
-    </div>
+    
+      <><nav>
+      <div className="topnav">
+        
+        
+      </div>
+    </nav><div className="Logueo">
+        <Login />
+      </div></>
   );
 }
 

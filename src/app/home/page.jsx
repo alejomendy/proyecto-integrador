@@ -9,7 +9,12 @@ export default function Home() {
   
   return (
     <main >  
-     
+         <nav>    
+          <div className="topnav">
+              <a className="active" href="../home">Home</a>
+              <a href="#Modelos">Modelos</a>
+          </div>
+        </nav>
       <Formulario/>
     </main>
   )

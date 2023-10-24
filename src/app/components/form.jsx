@@ -1,14 +1,14 @@
 'use client'
-import styles from './css/Form.module.css'
+import style from './css/Form.module.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 const Formulario = () => {
-    const [dropdown, setDropdown]= useState(false);
+  //   const [dropdown, setDropdown]= useState(false);
 
-  const abrirCerrarDropdown=()=>{
-    setDropdown(!dropdown)
-  }
+  // const abrirCerrarDropdown=()=>{
+  //   setDropdown(!dropdown)
+  // }
   const [formData, setFormData] = useState({
     campo1: '',
     campo2: '',
@@ -40,8 +40,8 @@ const Formulario = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.customInput} >
-        <label htmlFor="campo1"><p className={styles.texcolor}>Nombre del campo</p></label>
+      <div className='customInput' >
+        <label htmlFor="campo1"><p >Nombre del campo</p></label>
         <input
           type="text"
           id="campo1"
