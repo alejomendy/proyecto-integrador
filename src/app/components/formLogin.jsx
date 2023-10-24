@@ -3,7 +3,7 @@ import style from './css/Form.module.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
-const Formulario = () => {
+const LoginForm = () => {
   //   const [dropdown, setDropdown]= useState(false);
 
   // const abrirCerrarDropdown=()=>{
@@ -39,33 +39,41 @@ const Formulario = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='customInput' >
-        <label htmlFor="campo1"><p >Nombre del campo</p></label>
-        <input
-          type="text"
-          id="campo1"
-          name="campo1"
-          required
-          value={formData.campo1}
-          onChange={handleChange}
-        />
+    <form onSubmit={handleSubmit}  >
+      <div className='form' >
+          <div className='centered-div'>
+            <label htmlFor="campo1" ><p>Nombre del campo</p></label>
+            <input
+              className='text'
+              type="text"
+              id="campo1"
+              name="campo1"
+              required
+              value={formData.campo1}
+              onChange={handleChange}
+            />
+          </div>
       </div>
-      <div className='pasword' >
-        <label htmlFor="contraseña"><p >Contraseña</p></label>
-        <input
-          type="text"
-          id="pasword"
-          name="contraseña"
-          required
-          value={formData.campo1}
-          onChange={handleChange}
-        />
+      <div className='form' >
+        <div className='centered-div '>
+          <label htmlFor="contraseña"  ><p>Contraseña</p></label>
+          <input 
+            className='text'
+            type="text"
+            id="pasword"
+            name="pasword"
+            required
+            value={formData.pasword}
+            onChange={handleChange}
+          />
+        </div>
       </div>
       {/* Agrega más campos según tus necesidades */}
-      <button type="submit" className='boton' >Enviar</button>
+      <div className='form'>
+        <button type="submit" className='boton centered-div' >Enviar</button>
+      </div>
     </form>
   );
 };
 
-export default Formulario;
+export default LoginForm;
