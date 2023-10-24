@@ -60,10 +60,10 @@ const LoginForm = () => {
           <input 
             className='text'
             type="text"
-            id="pasword"
-            name="pasword"
+            id="password"
+            name="password"
             required
-            value={formData.pasword}
+            value={formData.password}
             onChange={handleChange}
           />
         </div>
