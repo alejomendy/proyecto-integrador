@@ -1,14 +1,26 @@
 'use client'
 import React, { useState } from 'react';
 import styles from './css/Loguin.form.css'
+import axios from 'axios';
 
 const LoginForm = ({ handleLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
     handleLogin({ username, password });
+
+    axios.post('http://localhost:3000/api/user/login', formData)
+      .then(response => {
+        console.log('Respuesta de la API:', response.data);
+        // Puedes hacer algo con la respuesta si es necesario
+      })
+      .catch(error => {
+        console.error('Error al enviar la solicitud:', error);
+        // Puedes manejar el error aquí si es necesario
+      });
   };
 
   return (

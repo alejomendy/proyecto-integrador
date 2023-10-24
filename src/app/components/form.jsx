@@ -1,14 +1,14 @@
 'use client'
-import style from './css/Form.module.css'
+ import style from './css/Form.module.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 const Formulario = () => {
-  //   const [dropdown, setDropdown]= useState(false);
+     const [dropdown, setDropdown]= useState(false);
 
-  // const abrirCerrarDropdown=()=>{
-  //   setDropdown(!dropdown)
-  // }
+   const abrirCerrarDropdown=()=>{
+     setDropdown(!dropdown)
+   }
   const [formData, setFormData] = useState({
     campo1: '',
     campo2: '',
