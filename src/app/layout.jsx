@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
-import './globals.css'
+import style from './globals.css'
+import Formulario from './components/form'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,14 +15,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <nav>    
-          <div class="topnav">
-              <a class="active" href="#home">Home</a>
-              <a href="login">Login</a>
+          <div className="topnav">
+              <a className="active" href="#home">Home</a>
+              <a href="./lo">Login</a>
           </div>
         </nav>
         
         {children}
       </body>
+      
     </html>
   )
 }

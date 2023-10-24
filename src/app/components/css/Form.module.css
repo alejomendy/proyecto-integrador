@@ -1,0 +1,43 @@
+/* Estilos para la etiqueta del dropdown */
+.label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 1px;
+    
+  }
+  
+  /* Estilos para el dropdown */
+  .drop {
+    padding: 8px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  /* Estilos para las opciones del dropdown */
+  .option {
+    font-size: 16px;
+  }
+  .textcolor{
+    color: black;
+  }
+  /*estilo para nombre del campo*/
+  .customInput{
+    display: flex;
+    justify-content: center ;
+    padding: 10px;
+    border: 3px;
+    border-radius: 50px;
+    
+    
+  }
+  
+  .boton{
+    background-color: antiquewhite;
+    color: black;
+    display: grid;
+    margin: auto;
+  }

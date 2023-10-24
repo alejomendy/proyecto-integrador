@@ -46,28 +46,8 @@ body {
   color: aliceblue;
 }
 div {
-  margin: 20px;
+  margin: 0px;
   font-family: Arial, sans-serif;
   
 }
 
-/* Estilos para la etiqueta del dropdown */
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-/* Estilos para el dropdown */
-select {
-  padding: 8px;
-  font-size: 16px;
-}
-
-/* Estilos para las opciones del dropdown */
-option {
-  font-size: 16px;
-}
-.textcolor{
-  color: black;
-}

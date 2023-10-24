@@ -1,0 +1,28 @@
+.usuario{
+    display: flex;
+    justify-content: center ;
+    padding: 10px;
+    border: 3px;
+    border-radius: 50px;  
+  }
+.contraseña{
+    display: flex;
+    justify-content: center ;
+    padding: 5px;
+    border: 3px;
+    border-radius: 50px;  
+     
+}
+.text{
+    color: black;
+}
+.boton{
+    background-color: antiquewhite;
+    color: black;
+    display: grid;
+    margin: auto;
+  }
+.h2{
+    display: flex;
+    justify-content: center;
+}
