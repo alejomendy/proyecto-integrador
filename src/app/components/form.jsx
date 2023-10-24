@@ -39,7 +39,7 @@ const Formulario = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='container'> 
       <div className='customInput' >
         <label htmlFor="campo1"><p >Nombre del campo</p></label>
         <input
