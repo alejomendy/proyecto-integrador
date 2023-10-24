@@ -1,9 +1,9 @@
 import { testConecction } from "@/BD/bd";
-import { createUser } from "../../controllers/userControllers"
 
 export default async function conectar(req,res) {
     if (req.method === 'GET'){
-        const connect = await testConecction(); 
+        const connect = await testConecction();
+
         console.log(connect);
         res.json({msj:connect});
     }
