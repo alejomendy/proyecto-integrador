@@ -22,15 +22,15 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Aquí puedes hacer la solicitud a la API
+    
     axios.post('URL_DE_TU_API', formData)
       .then(response => {
         console.log('Respuesta de la API:', response.data);
-        // Puedes hacer algo con la respuesta si es necesario
+        
       })
       .catch(error => {
         console.error('Error al enviar la solicitud:', error);
-        // Puedes manejar el error aquí si es necesario
+        
       });
   };
 
