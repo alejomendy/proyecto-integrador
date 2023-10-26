@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import react, { useState,useEffect,usere } from 'react'
 import Formulario from '../components/form'
+
 import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 
 export default function Home() {
@@ -15,7 +16,9 @@ export default function Home() {
               <a href="#Modelos">Modelos</a>
           </div>
         </nav>
-      <Formulario/>
+      
+        <Formulario/>
+      
     </main>
   )
 }

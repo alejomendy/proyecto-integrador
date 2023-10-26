@@ -1,19 +1,20 @@
 import React from 'react';
-import LoginForm from '@/app/components/formLogin';
-import Login from '../components/Login';
+import LoginForm from '../components/formLogin';
 
-function Logueo() {
-  return (
+
+const Login = () => {
+  const handleLogin = (userData) => {
     
-      <><nav>
-      <div className="topnav">
-        
-        
-      </div>
-    </nav><div className="Logueo">
-        <Login />
-      </div></>
-  );
-}
+    console.log('Usuario:', userData.username);
+    console.log('Contraseña:', userData.password);
+  };
 
-export default Logueo;
+  return (
+    <div>
+    
+      <LoginForm  />
+    </div>
+  );
+};
+
+export default Login;

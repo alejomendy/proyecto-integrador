@@ -1,14 +1,10 @@
 'use client'
- import style from './css/Form.module.css'
+import style from '../components/css/home.css'
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
-const Formulario = () => {
-     const [dropdown, setDropdown]= useState(false);
 
-   const abrirCerrarDropdown=()=>{
-     setDropdown(!dropdown)
-   }
+const LoginForm = () => {
+ 
   const [formData, setFormData] = useState({
     campo1: '',
     campo2: '',
@@ -39,39 +35,44 @@ const Formulario = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='customInput' >
-        <label htmlFor="campo1"><p >Nombre del campo</p></label>
-        <input
-          type="text"
-          id="campo1"
-          name="campo1"
-          required
-          value={formData.campo1}
-          onChange={handleChange}
-        />
-      </div>
-      <div className='drop'>
-        <label htmlFor="campo2">Selecciona una opción:</label>
-        <select id="dropdown" className='textcolor' name='campo2' value={formData.campo2} onChange={handleChange} required>
-          <option value="">--Selecciona--</option>
-          <option value="opcion1">Unique</option>
-          <option value="opcion2">Value</option>
-          <option value="opcion3">Null</option>
-        </select>
-        {/* <input
-            type="text"
-            id="campo2"
-            name="campo2"
-            value={formData.campo2}
-            onChange={handleChange}
-            />*/}
-        
-      </div>
-      {/* Agrega más campos según tus necesidades */}
-      <button type="submit" className='boton' >Enviar</button>
-    </form>
+    <div>
+      <br />
+      <br />
+      
+      <form onSubmit={handleSubmit}  >
+        <div className='form' >
+            <div >
+              <label htmlFor="campo1" ><p>Nombre del campo</p></label>
+              <input
+                className='text'
+                type="text"
+                id="campo1"
+                name="campo1"
+                required
+                value={formData.campo1}
+                onChange={handleChange}
+              />
+            </div>
+        </div>
+        <div className='form' >
+          <div className='centered-div '>
+          <label htmlFor="campo2">Selecciona una opción:</label>
+            <select id="dropdown" className='text' name='campo2' value={formData.campo2} onChange={handleChange} required>
+              <option value="Unique">Unique</option>
+              <option value="Default Value">Default Value</option>
+              <option value="Null">Null</option>
+            </select>
+          </div>
+        </div>
+        {/* Agrega más campos según tus necesidades */}
+        <br />
+        <div className='form'>
+          <button type="submit" className='boton centered-div' >Enviar</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
-export default Formulario;
+export default LoginForm;
+

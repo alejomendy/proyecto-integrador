@@ -1,18 +1,34 @@
 'use client'
+import style from './css/Loguin.form.css'
 import React, { useState } from 'react';
-import styles from './css/Loguin.form.css'
 import axios from 'axios';
+import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
+const LoginForm = () => {
+  //   const [dropdown, setDropdown]= useState(false);
 
-const LoginForm = ({ handleLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const abrirCerrarDropdown=()=>{
+  //   setDropdown(!dropdown)
+  // }
+  const [formData, setFormData] = useState({
+    campo1: '',
+    campo2: '',
+    // Agrega aquí más campos según tus necesidades
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
 
   const handleSubmit = (e) => {
 
     e.preventDefault();
-    handleLogin({ username, password });
 
-    axios.post('http://localhost:3000/api/user/login', formData)
+    // Aquí puedes hacer la solicitud a la API
+    axios.post('URL_DE_TU_API', formData)
       .then(response => {
         console.log('Respuesta de la API:', response.data);
         // Puedes hacer algo con la respuesta si es necesario
@@ -24,29 +40,44 @@ const LoginForm = ({ handleLogin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} >
-      <div className='usuario'  > 
-        <label >Usuario:</label>
-        <input
-          className='text'
-          type="text"
-          value={username}
-          required
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div className='contraseña'>
-        <label>Contraseña:</label>
-        <input
-          className='text'
-          type="password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit" className='boton'>Iniciar Sesión</button>
-    </form>
+    <div className='centered-div'>
+        <br />
+        <h2 className='h2'>Iniciar Sesión</h2>
+        <br />
+      <form onSubmit={handleSubmit} className='form'  > 
+        <div >
+          <label htmlFor="campo1" className='label'><p>Nombre del campo</p></label>
+          <input
+            className='input'
+            type="text"
+            id="campo1"
+            name="campo1"
+            required
+            value={formData.campo1}
+            onChange={handleChange}
+          />
+        </div> 
+        <br />
+        <div >
+          <label htmlFor="contraseña"  className='centered-div '><p>Contraseña</p></label>
+          <input 
+            className='input'
+            type="password"
+            id="password"
+            name="password"
+            required
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+
+        
+        
+          <br />
+          <button type="submit" className='button ' >Enviar</button>
+        
+      </form>
+    </div>
   );
 };
 
