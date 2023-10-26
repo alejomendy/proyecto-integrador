@@ -1,5 +1,5 @@
 'use client'
-import style from './css/Form.module.css'
+import style from './css/Loguin.form.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
@@ -39,27 +39,29 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}  >
-      <div className='form' >
-          <div className='centered-div'>
-            <label htmlFor="campo1" ><p>Nombre del campo</p></label>
-            <input
-              className='text'
-              type="text"
-              id="campo1"
-              name="campo1"
-              required
-              value={formData.campo1}
-              onChange={handleChange}
-            />
-          </div>
-      </div>
-      <div className='form' >
-        <div className='centered-div '>
-          <label htmlFor="contraseña"  ><p>Contraseña</p></label>
-          <input 
-            className='text'
+    <div className='centered-div'>
+        <br />
+        <h2 className='h2'>Iniciar Sesión</h2>
+        <br />
+      <form onSubmit={handleSubmit} className='form'  > 
+        <div >
+          <label htmlFor="campo1" className='label'><p>Nombre del campo</p></label>
+          <input
+            className='input'
             type="text"
+            id="campo1"
+            name="campo1"
+            required
+            value={formData.campo1}
+            onChange={handleChange}
+          />
+        </div> 
+        <br />
+        <div >
+          <label htmlFor="contraseña"  className='centered-div '><p>Contraseña</p></label>
+          <input 
+            className='input'
+            type="password"
             id="password"
             name="password"
             required
@@ -67,12 +69,14 @@ const LoginForm = () => {
             onChange={handleChange}
           />
         </div>
-      </div>
-      {/* Agrega más campos según tus necesidades */}
-      <div className='form'>
-        <button type="submit" className='boton centered-div' >Enviar</button>
-      </div>
-    </form>
+
+        
+        
+          <br />
+          <button type="submit" className='button ' >Enviar</button>
+        
+      </form>
+    </div>
   );
 };
 
