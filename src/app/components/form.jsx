@@ -1,14 +1,10 @@
 'use client'
- import style from './css/Form.module.css'
+import style from './css/Form.module.css'
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
+//import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 const Formulario = () => {
-     const [dropdown, setDropdown]= useState(false);
 
-   const abrirCerrarDropdown=()=>{
-     setDropdown(!dropdown)
-   }
   const [formData, setFormData] = useState({
     campo1: '',
     campo2: '',
@@ -27,10 +23,11 @@ const Formulario = () => {
     e.preventDefault();
 
     // Aquí puedes hacer la solicitud a la API
-    axios.post('URL_DE_TU_API', formData)
+    axios.post('http://localhost:3000/api/models', formData)
       .then(response => {
         console.log('Respuesta de la API:', response.data);
         // Puedes hacer algo con la respuesta si es necesario
+        
       })
       .catch(error => {
         console.error('Error al enviar la solicitud:', error);
@@ -41,7 +38,7 @@ const Formulario = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className='customInput' >
-        <label htmlFor="campo1"><p >Nombre del campo</p></label>
+        <label htmlFor="campo1"><p>Nombre del campo</p></label>
         <input
           type="text"
           id="campo1"
@@ -55,9 +52,9 @@ const Formulario = () => {
         <label htmlFor="campo2">Selecciona una opción:</label>
         <select id="dropdown" className='textcolor' name='campo2' value={formData.campo2} onChange={handleChange} required>
           <option value="">--Selecciona--</option>
-          <option value="opcion1">Unique</option>
-          <option value="opcion2">Value</option>
-          <option value="opcion3">Null</option>
+          <option value="DataType.STRING">Unique</option>
+          <option value="Default Value">Default Value</option>
+          <option value="Null">Null</option>
         </select>
         {/* <input
             type="text"
@@ -69,7 +66,7 @@ const Formulario = () => {
         
       </div>
       {/* Agrega más campos según tus necesidades */}
-      <button type="submit" className='boton' >Enviar</button>
+      <button type="submit" className='boton'  >Enviar</button>
     </form>
   );
 };

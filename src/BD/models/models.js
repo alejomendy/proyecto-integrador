@@ -10,3 +10,7 @@ const Users = sequelize.define('users' , {
 module.exports = {
     Users,
 }
+
+
+
+
