@@ -8,7 +8,7 @@ export default function generateModel(name, data, relationship){
     for (let index = 0; index < name.length; index++) {
       var modelCode = ``
       var relationshipCode = ``
-      if( relationship[index] !== undefined){
+      if( relationship[index] !== undefined ){
         console.log(relationship[index].tipo)
         if(relationship[index].tabla === name[index] || relationship[index].relacion === name[index] ){
           modelCode = `const { ${relationship[index].relacion} } = require("./${relationship[index].relacion}");`
@@ -35,7 +35,7 @@ ${relationship[index].relacion}.belongsToMany(${relationship[index].tabla}) `
 const Sequelize = require('sequelize');
       
 const ${name[index]} = sequelize.define('${name[index]}', {
-${data[index].map(item => 
+${data[index].map(item =>
   `${item.name}: {  type: Sequelize.${item.type}, allowNull: ${item.allowNull}, unique: ${item.unique || false} }`).join(',\n  ')}}, 
 {tableName: "${name[index]}"});
 
@@ -56,8 +56,4 @@ return routes
 else{
   return false
 }
-}
-
-
-
- 
+} 
