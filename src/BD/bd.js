@@ -24,7 +24,7 @@ const testConecction = async () => {
 
 const syncDB = async () => { 
     try {
-        await sequelize.sync({force: false});
+        await sequelize.sync({force: true});
         console.log('Sync was successfully.');
         return true
     } catch (error) {
