@@ -25,7 +25,7 @@ const Formulario = () => {
     // Aquí puedes hacer la solicitud a la API
     axios.post('http://localhost:3000/api/models', formData)
       .then(response => {
-        console.log('Respuesta de la API:', response.data);
+        console.log('Url del modelo:', response.data);
         // Puedes hacer algo con la respuesta si es necesario
         
       })

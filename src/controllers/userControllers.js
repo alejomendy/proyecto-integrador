@@ -1,4 +1,4 @@
-import { Users } from "@/BD/models/models";
+import { Users } from "@/BD/models/UserModel";
 
 const createUser = async (name , password) => {
     try {

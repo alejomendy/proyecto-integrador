@@ -1,10 +1,9 @@
-import { syncDB } from "@/BD/bd";
-import { Users } from "@/BD/models/models";
+// import { syncDB } from "@/BD/bd";
+import syncUserModel from "@/BD/models/Pruebas";
 
 export default async function syncDBAPI(req,res) {
     if (req.method === 'GET'){
-        const sync = await syncDB();
-         
+        const sync = await syncUserModel();
         console.log(sync);
         res.json({msj:sync});
     }
