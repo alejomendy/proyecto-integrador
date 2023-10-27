@@ -1,13 +1,15 @@
-import { Users } from "@/BD/models/models";
+import { syncDB } from "@/BD/bd";
+import { Users } from "@/BD/models/UserModel";
 
-const createUser = async (name , password) => {
+const createUser = async (name , password, models) => {
     try {
         const response = await Users.findOne({where: {name: name, password: password}})
         console.log(response)
         if (response === null){
             
-            console.log(name, password)
+            // console.log(name, password)
             const user = await Users.create({name: name, password: password})
+            // console.log(user)
             return user.dataValues
         }
         else{

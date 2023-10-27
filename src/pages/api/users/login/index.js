@@ -8,11 +8,11 @@ export default async function loginUser(req, res){
                 var request = await loginUser(req.body.name, req.body.password)
             }
             else{
-                res.json({msg: 'error, datos nulos'}).status(400)
-                console.log('error, datos nulos')
+                res.json({msg: 'Error, datos nulos'}).status(400)
+                console.log('Error, datos nulos')
             }
         } catch (error) {
-            res.json({msg: 'hubo un error al iniciar sesion'}).status(400)
+            res.json({msg: 'Hubo un error al iniciar sesion'}).status(400)
         }
         
     }
