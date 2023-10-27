@@ -1,78 +1,196 @@
 'use client'
-import style from '../components/css/home.css'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
-const LoginForm = () => {
- 
-  const [formData, setFormData] = useState({
-    campo1: '',
-    campo2: '',
-    // Agrega aquí más campos según tus necesidades
-  });
+const Formulario = () => {
+  const [formularios, setFormularios] = useState([
+    {
+      name: '',
+      tipo: 'STRING',
+      nombre: '',
+      allowNull: false,
+      unique: false,
+      relacion: false, // Nuevo campo para la relación
+      relacionTipo: '1a1',
+      relacionTabla1: '',
+      relacionTabla2: '',
+      relacionTabla3: '',
+    },
+  ]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+  const handleAddFormulario = () => {
+    setFormularios([
+      ...formularios,
+      {
+        name: '',
+        tipo: 'STRING',
+        nombre: '',
+        allowNull: false,
+        unique: false,
+        relacion: false, // Valor inicial para la nueva checkbox de relación
+        relacionTipo: '1a1',
+        relacionTabla1: '',
+        relacionTabla2: '',
+        relacionTabla3: '',
+      },
+    ]);
   };
 
-  const handleSubmit = (e) => {
+  const handleInputChange = (index, campo, value) => {
+    const nuevosFormularios = [...formularios];
+    nuevosFormularios[index][campo] = value;
+    setFormularios(nuevosFormularios);
+  };
+
+  const handleRelacionChange = (index, value) => {
+    const nuevosFormularios = [...formularios];
+    nuevosFormularios[index]['relacion'] = value;
+    setFormularios(nuevosFormularios);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Aquí puedes hacer la solicitud a la API
-    axios.post('URL_DE_TU_API', formData)
-      .then(response => {
-        console.log('Respuesta de la API:', response.data);
-        // Puedes hacer algo con la respuesta si es necesario
-      })
-      .catch(error => {
-        console.error('Error al enviar la solicitud:', error);
-        // Puedes manejar el error aquí si es necesario
-      });
+    const requestData = {
+      name: formularios.map((formulario) => formulario.name),
+      data: formularios.map((formulario) => [
+        {
+          name: formulario.nombre,
+          type: formulario.tipo,
+          allowNull: formulario.allowNull,
+          unique: formulario.unique,
+        },
+      ]),
+      relationship: formularios.map((formulario) => {
+        return {
+          tipo: formulario.relacionTipo,
+          tabla1: formulario.relacionTabla1,
+          tabla2: formulario.relacionTabla2,
+          tabla3: formulario.relacionTabla3,
+        };
+      }),
+    };
+      console.log(requestData)
+     try {
+     const response = await axios.post('URL_DE_TU_API', requestData);
+      console.log('Respuesta:', response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
     <div>
-      <br />
-      <br />
-      
-      <form onSubmit={handleSubmit}  >
-        <div className='form' >
-            <div >
-              <label htmlFor="campo1" ><p>Nombre del campo</p></label>
-              <input
-                className='text'
-                type="text"
-                id="campo1"
-                name="campo1"
-                required
-                value={formData.campo1}
-                onChange={handleChange}
-              />
-            </div>
-        </div>
-        <div className='form' >
-          <div className='centered-div '>
-          <label htmlFor="campo2">Selecciona una opción:</label>
-            <select id="dropdown" className='text' name='campo2' value={formData.campo2} onChange={handleChange} required>
-              <option value="Unique">Unique</option>
-              <option value="Default Value">Default Value</option>
-              <option value="Null">Null</option>
+      {formularios.map((formulario, index) => (
+        <form key={index}>
+          <label>
+            Name:
+            <input
+              type="text"
+              value={formulario.name}
+              onChange={(e) => handleInputChange(index, 'name', e.target.value)}
+            />
+          </label>
+          <label>
+            Tipo:
+            <select
+              value={formulario.tipo}
+              onChange={(e) => handleInputChange(index, 'tipo', e.target.value)}
+            >
+              <option value="STRING">STRING</option>
+              <option value="NUMBER">NUMBER</option>
+              <option value="DATE">DATE</option>
+              {/* Agrega otros tipos según tu necesidad */}
             </select>
-          </div>
-        </div>
-        {/* Agrega más campos según tus necesidades */}
-        <br />
-        <div className='form'>
-          <button type="submit" className='boton centered-div' >Enviar</button>
-        </div>
-      </form>
+          </label>
+          <label>
+            Nombre:
+            <input
+              type="text"
+              value={formulario.nombre}
+              onChange={(e) => handleInputChange(index, 'nombre', e.target.value)}
+            />
+          </label>
+          <label>
+            Allow Null:
+            <input
+              type="checkbox"
+              checked={formulario.allowNull}
+              onChange={(e) =>
+                handleInputChange(index, 'allowNull', e.target.checked)
+              }
+            />
+          </label>
+          <label>
+            Unique:
+            <input
+              type="checkbox"
+              checked={formulario.unique}
+              onChange={(e) =>
+                handleInputChange(index, 'unique', e.target.checked)
+              }
+            />
+          </label>
+          <label>
+            Relación:
+            <input
+              type="checkbox"
+              checked={formulario.relacion}
+              onChange={(e) =>
+                handleRelacionChange(index, e.target.checked)
+              }
+            />
+          </label>
+          {formulario.relacion && (
+            <>
+              <label>
+                Relación Tipo:
+                <input
+                  type="text"
+                  value={formulario.relacionTipo}
+                  onChange={(e) =>
+                    handleInputChange(index, 'relacionTipo', e.target.value)
+                  }
+                />
+              </label>
+              <label>
+                Relación Tabla 1:
+                <input
+                  type="text"
+                  value={formulario.relacionTabla1}
+                  onChange={(e) =>
+                    handleInputChange(index, 'relacionTabla1', e.target.value)
+                  }
+                />
+              </label>
+              <label>
+                Relación Tabla 2:
+                <input
+                  type="text"
+                  value={formulario.relacionTabla2}
+                  onChange={(e) =>
+                    handleInputChange(index, 'relacionTabla2', e.target.value)
+                  }
+                />
+              </label>
+              <label>
+                Relación Tabla 3:
+                <input
+                  type="text"
+                  value={formulario.relacionTabla3}
+                  onChange={(e) =>
+                    handleInputChange(index, 'relacionTabla3', e.target.value)
+                  }
+                />
+              </label>
+            </>
+          )}
+        </form>
+      ))}
+      <button onClick={handleAddFormulario}>Agregar Formulario</button>
+      <button onClick={handleSubmit}>Enviar</button>
     </div>
   );
 };
 
-export default LoginForm;
-
+export default Formulario;
