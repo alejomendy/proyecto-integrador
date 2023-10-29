@@ -1,80 +1,44 @@
-/* Estilos para centrar y dar estilo al formulario */
-
-.text{
-  color: black;
-}
-
-
-
-.centered-div {
-  margin: 0; /* Elimina el margen entre elementos internos */
-  
-}
-
-body {
-  background-color: #e5e5f7;
-  opacity:0.9;
-  background-size: 40px 40px;
-  background-image: repeating-linear-gradient(45deg, #444cf7 0, #444cf7 6px, #e5e5f7 3px, #e5e5f7 50%);
-
-}
-
-.h2{
+.container {
   text-align: center;
-  background-color: #007FFF;
+  background-color: #5c5d5c;
   margin: auto;
   padding: 15px;
   height: auto;
   width: 25%;
   align-content: center;
-  border: 3px solid #5c5d5c;
-  border-radius: 15px;
-  box-shadow: inset;
-  font-size: 50px;
-}
-
-.form{
-  text-align: center;
-  background-color: #007FFF;
-  margin: auto;
-  padding: 15px;
-  height: auto;
-  width: 25%;
-  align-content: center;
-  border: 3px solid #5c5d5c;
+  border: 3px solid rgb(34, 34, 34);
   border-radius: 15px;
   box-shadow: inset;
   opacity: 1;
+}
+.containerBorder{
+  margin: 10px;
+  border: 2px;
+  border-radius: 8px;
+  border-color: black;
+}
+.margin{
+  margin-bottom: 10px;
   
 }
-.label{
-  opacity: 0.9;
-    width: 50%;
-    font-size: 20px;
-    color: #fefefe;
-    font-weight: bold; 
-    margin-bottom: 5px; 
+.input{
+  width: 100%;
 }
-.input {
-  opacity: 0.9;
-  width: 95%;
-  margin-top: 5px;
-  padding: 10px;
-  border: 3px solid #ccc; 
-  border-radius: 5px; 
-  font-size: 16px;
-  color: #333;
+.text {
+  font-size: 18px;
+  color: #000000; /* Cambia el color del texto a gris */
+  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto */
 }
-.button {
-  align-items: center;
+.button1, .button2 {
   font-size: 20px;
-  flex-direction: column;
-  width: 50%;
+  width: 30%;
   padding: 15px 25px; 
   background-color: #333; 
   color: #fff;
   border: none;
   border-radius: 5px; 
-  font-size: 20px;
+  font-size: 15px;
   cursor: pointer;
+  margin: 10px auto; /* Centra los botones horizontalmente */
 }
+

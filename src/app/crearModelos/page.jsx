@@ -12,8 +12,9 @@ export default function Home() {
     <main >  
          <nav>    
           <div className="topnav">
-              <a className="active" href="../home">Home</a>
-              <a href="#Modelos">Modelos</a>
+              <a className="active" href="../inicio">Inicio</a>
+              <a href="../modelos">Modelos</a>
+              <a href="../crearModelos">Crear Modelo</a>
           </div>
         </nav>
       

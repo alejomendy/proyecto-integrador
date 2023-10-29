@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from '../components/formLogin';
+import Footer from '../components/footer';
 
 
 const Login = () => {
@@ -10,10 +11,11 @@ const Login = () => {
   };
 
   return (
-    <div>
-    
-      <LoginForm  />
+    <><div>
+
+      <LoginForm />
     </div>
+    </>
   );
 };
 
