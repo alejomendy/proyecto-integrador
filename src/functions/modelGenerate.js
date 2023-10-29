@@ -2,58 +2,60 @@ const fs = require('fs');
 
 
 export default function generateModel(name, data, relationship){
-  // Supongamos que tienes información sobre un modelo y sus itemiedades.
   var routes = []
   if (name !== null && data !== null){
     for (let index = 0; index < name.length; index++) {
       var modelCode = ``
       var relationshipCode = ``
       if( relationship[index] !== undefined ){
-        console.log(relationship[index].tipo)
-        if(relationship[index].tabla === name[index] || relationship[index].relacion === name[index] ){
-          modelCode = `const { ${relationship[index].relacion} } = require("./${relationship[index].relacion}");`
+        // console.log('relationship:  ', relationship)
+        // console.log('relacion tipo: ',relationship[index].tipo)
+        // console.log('Nombre: ',relationship[index].tabla1)
+        if(relationship[index].tabla1 === name[index] || relationship[index].tabla2 === name[index] ){
+          modelCode = `const { ${relationship[index].tabla2} } = require("./${relationship[index].tabla2}");`
           if(relationship[index].tipo === '1a1'){
-            relationshipCode = `${relationship[index].tabla}.hasOne(${relationship[index].relacion}) 
-${relationship[index].relacion}.belongsTo(${relationship[index].tabla}) `                 
+            relationshipCode = `${relationship[index].tabla1}.hasOne(${relationship[index].tabla2}) 
+${relationship[index].tabla2}.belongsTo(${relationship[index].tabla1}) `                 
           }
           if(relationship[index].tipo === '1aM'){
-            relationshipCode = `${relationship[index].tabla}.hasMany(${relationship[index].relacion}) 
-${relationship[index].relacion}.belongsTo(${relationship[index].tabla}) `                 
+            relationshipCode = `${relationship[index].tabla1}.hasMany(${relationship[index].tabla2}) 
+${relationship[index].tabla2}.belongsTo(${relationship[index].tabla1}) `                 
           }
           if(relationship[index].tipo === 'MaM'){
-            relationshipCode = `${relationship[index].tabla}.hasMany(${relationship[index].relacion}) 
-${relationship[index].relacion}.belongsToMany(${relationship[index].tabla}) `                 
+            var through = relationship[index].tabla1 + relationship[index].tabla2
+            relationshipCode = `${relationship[index].tabla1}.hasMany(${relationship[index].tabla2}) 
+${relationship[index].tabla2}.belongsToMany(${relationship[index].tabla1},{ through: '${through}'})`                 
           }
         }
-       
-        
       }
+      // console.log('item: ',data[index].map(item => item.name))
       
 
-      // Genera el código del modelo Sequelize a partir de la información sin relacion con otro modelo.
-      modelCode = modelCode + `const { sequelize } = require("../bd");
+      // Genera el código del modelo sin la relacion.
+      modelCode = modelCode + `\nconst { sequelize } = require("../bd");
 const Sequelize = require('sequelize');
       
 const ${name[index]} = sequelize.define('${name[index]}', {
 ${data[index].map(item =>
-  `${item.name}: {  type: Sequelize.${item.type}, allowNull: ${item.allowNull}, unique: ${item.unique || false} }`).join(',\n  ')}}, 
-{tableName: "${name[index]}"});
+  `${item.name}: { type: Sequelize.${item.type}, allowNull: ${item.allowNull}, unique: ${item.unique || false} }`).join(',\n  ')}}, 
+{timestamps:false,
+tableName: "${name[index]}"});
 
 module.exports ={ 
   ${name[index]},
 }
 `;       
-
+    // Se agrega al codigo la relacion 
     modelCode = modelCode + relationshipCode
       // Escribe el código en un archivo modelByUser.js.
-      fs.writeFileSync(`./src/BD/models/${name[index]}.js`, modelCode);
+      fs.writeFileSync(`./src/BD/models/userModels/${name[index]}.js`, modelCode);
 
       console.log(`Archivo ${name[index]}.js generado.`);
-      routes.push(`http://localhost:3000/src/BD/models/${name[index]}.js`); 
+      routes.push(`http://localhost:3000/src/BD/models/userModels/${name[index]}.js`); 
 }
-return routes
-} 
-else{
-  return false
-}
+  return routes
+  } 
+  else{
+    return false
+  }
 } 

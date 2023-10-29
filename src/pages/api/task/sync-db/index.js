@@ -2,6 +2,8 @@ import { syncDB } from "@/BD/bd";
 import { Users } from "@/BD/models/UserModel";
 
 
+
+
 export default async function syncDBAPI(req,res) {
     if (req.method === 'GET'){
         const sync = await syncDB();
