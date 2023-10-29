@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 
-export default function generateModel(name, data, relationship){
+export default function generateModel(name, data, relationship, body){
   var routes = []
   if (name !== null && data !== null){
     for (let index = 0; index < name.length; index++) {
@@ -32,7 +32,7 @@ ${relationship[index].tabla2}.belongsToMany(${relationship[index].tabla1},{ thro
       
 
       // Genera el código del modelo sin la relacion.
-      modelCode = modelCode + `\nconst { sequelize } = require("../bd");
+      modelCode = modelCode + `\nconst { sequelize } = require("../../bd");
 const Sequelize = require('sequelize');
       
 const ${name[index]} = sequelize.define('${name[index]}', {
@@ -44,7 +44,9 @@ tableName: "${name[index]}"});
 module.exports ={ 
   ${name[index]},
 }
-`;       
+`;  
+    body = JSON.stringify(body)
+    fs.writeFileSync(`./src/BD/models/userModels/${name[index]}-JSON.txt`, body);
     // Se agrega al codigo la relacion 
     modelCode = modelCode + relationshipCode
       // Escribe el código en un archivo modelByUser.js.

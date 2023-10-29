@@ -16,7 +16,7 @@ export default async function syncDBAPI(req,res) {
         //     await syncModelsRelation(name);
         // }
 
-        const route = await generateModel(req.body.name, req.body.data, req.body.relationship);
+        const route = await generateModel(req.body.name, req.body.data, req.body.relationship, req.body);
 
 
         if (route !== false && req.body.relationship !== null){

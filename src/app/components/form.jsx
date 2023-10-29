@@ -8,10 +8,10 @@ const Formulario = () => {
   const [formularios, setFormularios] = useState([
     {
       name: '',
-      data:[],
-      relationship:[ {tipo:'1a1' }],
-      
-      
+      tipo:'STRING',
+      allowNull: false,
+      unique: false,
+      relacion: false,
     },
   ]);
 
@@ -20,15 +20,10 @@ const Formulario = () => {
       ...formularios,
       {
         name: '',
-        data:[],
-        relationship:[{tipo:'1a1' }],
-        
-        // name: '',
-        // tipo: 'STRING',
-        // nombre: '',
-        // allowNull: false,
-        // unique: false,
-        // relacion: false, // Valor inicial para la nueva checkbox de relación
+        tipo:'STRING',
+        allowNull: false,
+        unique: false,
+        relacion: false // Valor inicial para la nueva checkbox de relación
         
        
       },
