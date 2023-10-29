@@ -10,7 +10,7 @@ const LoginForm = () => {
   //   setDropdown(!dropdown)
   // }
   const [formData, setFormData] = useState({
-    campo1: '',
+    usuario: '',
     campo2: '',
     // Agrega aquí más campos según tus necesidades
   });
@@ -24,36 +24,39 @@ const LoginForm = () => {
   };
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
-
+  
     // Aquí puedes hacer la solicitud a la API
     axios.post('http://localhost:3000/api/user/login', formData)
       .then(response => {
         console.log('Respuesta de la API:', response.data);
-        // Puedes hacer algo con la respuesta si es necesario
+  
+        // Si la respuesta de la API indica que el usuario es válido
+        if (response.data.usuarioValido) {
+          // Redirige a la página deseada
+          window.location.href = '/otraPagina';
+        }
       })
       .catch(error => {
         console.error('Error al enviar la solicitud:', error);
         // Puedes manejar el error aquí si es necesario
       });
   };
-
   return (
     <div className='centered-div'>
         <br />
         <h2 className='h2'>Iniciar Sesión</h2>
         <br />
-      <form onSubmit={handleSubmit} className='form'  > 
+      <form onSubmit={handleSubmit} className='form' > 
         <div >
-          <label htmlFor="campo1" className='label'><p>Nombre del campo</p></label>
+        <label htmlFor="usuario"  className='centered-div '><p>Usuario</p></label>
           <input
             className='input'
             type="text"
-            id="campo1"
-            name="campo1"
+            id="usuario"
+            name="usuario"
             required
-            value={formData.campo1}
+            value={formData.usuario}
             onChange={handleChange}
           />
         </div> 

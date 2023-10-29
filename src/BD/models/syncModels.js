@@ -1,5 +1,18 @@
 const { sequelize } = require("../bd");
-const { modeloUsuario } = require("./modeloUsuario");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
+const {  } = require("./");
 
 export default async function syncUserModel(){
     try {

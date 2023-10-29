@@ -11,23 +11,17 @@
   
 }
 
-body {
-  background-color: #e5e5f7;
-  opacity:0.9;
-  background-size: 40px 40px;
-  background-image: repeating-linear-gradient(45deg, #444cf7 0, #444cf7 6px, #e5e5f7 3px, #e5e5f7 50%);
 
-}
 
 .h2{
   text-align: center;
-  background-color: #007FFF;
+  background-color: #5c5d5c;
   margin: auto;
   padding: 15px;
   height: auto;
   width: 25%;
   align-content: center;
-  border: 3px solid #5c5d5c;
+  border: 3px solid white;
   border-radius: 15px;
   box-shadow: inset;
   font-size: 50px;
@@ -35,13 +29,13 @@ body {
 
 .form{
   text-align: center;
-  background-color: #007FFF;
+  background-color: #5c5d5c;
   margin: auto;
   padding: 15px;
   height: auto;
   width: 25%;
   align-content: center;
-  border: 3px solid #5c5d5c;
+  border: 3px solid white;
   border-radius: 15px;
   box-shadow: inset;
   opacity: 1;
