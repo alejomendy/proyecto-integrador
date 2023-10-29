@@ -9,28 +9,33 @@ export default function generateModel(name, data, relationship){
       var modelCode = ``
       var relationshipCode = ``
       if( relationship[index] !== undefined ){
-        console.log(relationship[index].tipo)
-        if(relationship[index].tabla === name[index] || relationship[index].relacion === name[index] ){
-          modelCode = `const { ${relationship[index].relacion} } = require("./${relationship[index].relacion}");`
+        // console.log('relationship:  ', relationship)
+        // console.log('relacion tipo: ',relationship[index].tipo)
+        // console.log('Nombre: ',relationship[index].tabla1)
+        if(relationship[index].tabla1 === name[index] || relationship[index].tabla2 === name[index] ){
+          console.log('aca tamo')
+          modelCode = `const { ${relationship[index].tabla2} } = require("./${relationship[index].tabla2}");`
           if(relationship[index].tipo === '1a1'){
-            relationshipCode = `${relationship[index].tabla}.hasOne(${relationship[index].relacion}) 
-${relationship[index].relacion}.belongsTo(${relationship[index].tabla}) `                 
+            relationshipCode = `${relationship[index].tabla1}.hasOne(${relationship[index].tabla2}) 
+${relationship[index].tabla2}.belongsTo(${relationship[index].tabla1}) `                 
           }
           if(relationship[index].tipo === '1aM'){
-            relationshipCode = `${relationship[index].tabla}.hasMany(${relationship[index].relacion}) 
-${relationship[index].relacion}.belongsTo(${relationship[index].tabla}) `                 
+            relationshipCode = `${relationship[index].tabla1}.hasMany(${relationship[index].tabla2}) 
+${relationship[index].tabla2}.belongsTo(${relationship[index].tabla1}) `                 
           }
           if(relationship[index].tipo === 'MaM'){
-            relationshipCode = `${relationship[index].tabla}.hasMany(${relationship[index].relacion}) 
-${relationship[index].relacion}.belongsToMany(${relationship[index].tabla}) `                 
+            through = relationship[index].tabla1 + relationship[index].tabla2
+            relationshipCode = `${relationship[index].tabla1}.hasMany(${relationship[index].tabla2}) 
+${relationship[index].tabla2}.belongsToMany(${relationship[index].tabla1},{ through: ${through}})`                 
           }
         }
        
         
       }
+      console.log('item: ',data[index].map(item => item.name))
       
 
-      // Genera el código del modelo Sequelize a partir de la información sin relacion con otro modelo.
+      // Genera el código del modelo Sequelize a partir de la información sin tabla2 con otro modelo.
       modelCode = modelCode + `const { sequelize } = require("../bd");
 const Sequelize = require('sequelize');
       
