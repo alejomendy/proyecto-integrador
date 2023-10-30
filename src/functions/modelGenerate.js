@@ -7,8 +7,8 @@ export default function generateModel(name, data, relationship, body){
     for (let index = 0; index < name.length; index++) {
       var modelCode = ``
       var relationshipCode = ``
-      if( relationship[index] !== undefined ){
-        // console.log('relationship:  ', relationship)
+      if( relationship[index] !== undefined  ){
+        console.log('relationship:  ', relationship[index])
         // console.log('relacion tipo: ',relationship[index].tipo)
         // console.log('Nombre: ',relationship[index].tabla1)
         if(relationship[index].tabla1 === name[index] || relationship[index].tabla2 === name[index] ){
