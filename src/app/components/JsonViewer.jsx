@@ -25,11 +25,12 @@ const JsonViewer = () => {
         return <div>Cargando...</div>;
     }
 
-    return (
-        <div className="json-container">
-            <pre>{JSON.stringify(jsonData, null, 2)}</pre>
-        </div>
-    );
-}
+  return (
+    <div>
+      <h1>Datos de la API para el ID almacenado en el localStorage:</h1>
+      <p>{data}</p>
+    </div>
+  );
+};
 
-export default JsonViewer;
+export default ApiData;

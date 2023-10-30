@@ -13,15 +13,16 @@ const createModelByUser = async (modelo, userId) => {
 
 const findModelByUser = async(userId) => {
     try {
-        const response = await ModelByUser.findOne({where: {userId: userId}})
-        if (response !== null){
-            // console.log('response data: ', response.dataValues)
-            return response.dataValues
+        console.log('usuario id controller',userId)
+        const response = await ModelByUser.findAll({where: {userId: userId}})
+        for (let index = 0; index < response.length; index++) {
+            
+            const modelo = response[index].dataValues.modelo;
+            console.log(modelo)
+              
         }
-        else{
-            console.log('Error al encontrar el JSON')
-            return false 
-        }
+        return modelo
+        
     } catch (error) {
         console.log('Error al encontrar el JSON (catch)')
         return false 
