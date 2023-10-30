@@ -1,16 +1,16 @@
 import  {findModelByUser} from "@/controllers/modelControllers.js"
 
-export default async function login(req, res){
+export default async function findModel(req, res){
 
     if(req.method === 'POST'){
         try {
             if (req.body.id !== null ){
-                var request = await loginUser(req.body.name, req.body.password)
+                var request = await findModelByUser(req.body.id)
                 if( request !== false){
-                    console.log('user encontrado', request)
+                    console.log('Modelo encontrado', request)
                     res.status(200).json({id: request.id})
                 }else{
-                    res.status(401).json({msg: 'Usuario no encontrado'})
+                    res.status(401).json({msg: 'Modelo no encontrado'})
                 }
             }
             else{
@@ -18,7 +18,7 @@ export default async function login(req, res){
                 console.log('Error, datos nulos')
             }
         } catch (error) {
-            res.status(400).json({msg: 'Hubo un error al iniciar sesion'})
+            res.status(400).json({msg: 'Hubo un error al buscar el modelo'})
         }
         
     }
