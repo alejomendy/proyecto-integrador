@@ -1,224 +1,231 @@
 'use client'
 import { useState } from 'react';
 import axios from 'axios';
-import style from '../components/css/home.css'
 
+export default function Formulario() {
+  const [formularios, setFormularios] = useState([]);
+  const [nombre, setNombre] = useState([]);
+  const [datos, setDatos] = useState([[]]);
+  const [relationship, setRelationship] = useState([[]]);
 
-const Formulario = () => {
-  const [formularios, setFormularios] = useState([
-    {
+  const agregarFormulario = () => {
+    setFormularios([...formularios, {}]);
+    setNombre([...nombre, '']);
+    setDatos([...datos, []]);
+    setRelationship([...relationship, []]);
+  };
+
+  const eliminarFormulario = (formularioIndex) => {
+    const nuevosFormularios = [...formularios];
+    nuevosFormularios.splice(formularioIndex, 1);
+    setFormularios(nuevosFormularios);
+
+    const nuevosNombres = [...nombre];
+    nuevosNombres.splice(formularioIndex, 1);
+    setNombre(nuevosNombres);
+
+    const nuevosDatos = [...datos];
+    nuevosDatos.splice(formularioIndex, 1);
+    setDatos(nuevosDatos);
+
+    const nuevasRelaciones = [...relationship];
+    nuevasRelaciones.splice(formularioIndex, 1);
+    setRelationship(nuevasRelaciones);
+  };
+
+  const handleNombreChange = (formularioIndex, nuevoNombre) => {
+    const nuevosNombres = [...nombre];
+    nuevosNombres[formularioIndex] = nuevoNombre;
+    setNombre(nuevosNombres);
+  };
+
+  const agregarCampo = (formularioIndex) => {
+    const nuevosDatos = [...datos];
+    nuevosDatos[formularioIndex].push({
       name: '',
-      tipo:'STRING',
+      type: 'STRING',
       allowNull: false,
       unique: false,
-      relacion: false,
-    },
-  ]);
-
-  const handleAddFormulario = () => {
-    setFormularios([
-      ...formularios,
-      {
-        name: '',
-        tipo:'STRING',
-        allowNull: false,
-        unique: false,
-        relacion: false // Valor inicial para la nueva checkbox de relación
-        
-       
-      },
-    ]);
+      defaultValue: []
+    });
+    setDatos(nuevosDatos);
   };
 
-  const handleInputChange = (index, campo, value) => {
-    const nuevosFormularios = [...formularios];
-    nuevosFormularios[index][campo] = value;
-    setFormularios(nuevosFormularios);
+  const agregarRelacion = (formularioIndex) => {
+    const nuevasRelaciones = [...relationship];
+    nuevasRelaciones[formularioIndex].push({
+      tabla1: '',
+      tabla2: '',
+      tipo: ''
+    });
+    setRelationship(nuevasRelaciones);
   };
 
-  const handleRelacionChange = (index, value) => {
-    if (index === 0) {
-      const nuevosFormularios = [...formularios];
-      nuevosFormularios[index]['relacion'] = value;
-      setFormularios(nuevosFormularios);
-    }
+  const eliminarCampo = (formularioIndex, campoIndex) => {
+    const nuevosDatos = [...datos];
+    nuevosDatos[formularioIndex].splice(campoIndex, 1);
+    setDatos(nuevosDatos);
   };
 
-  const handleSubmit = async (e) => {
-  
+  const eliminarRelacion = (formularioIndex, relacionIndex) => {
+    const nuevasRelaciones = [...relationship];
+    nuevasRelaciones[formularioIndex].splice(relacionIndex, 1);
+    setRelationship(nuevasRelaciones);
+  };
 
-    const requestData = {
-      name: formularios.map((formulario) => formulario.name),
-      data: formularios.map((formulario) => [
-        {
-          name: formulario.nombre,
-          type: formulario.tipo,
-          allowNull: formulario.allowNull,
-          unique: formulario.unique,
-        },
-      ]),
-      relationship: formularios.map((formulario) => {
-        return {
-          tipo: formulario.relacionTipo,
-          tabla1: formulario.relacionTabla1,
-          tabla2: formulario.relacionTabla2,
-          
-        };
-      }),
+  const handleCampoChange = (formularioIndex, campoIndex, field, value) => {
+    const nuevosDatos = [...datos];
+    nuevosDatos[formularioIndex][campoIndex] = {
+      ...nuevosDatos[formularioIndex][campoIndex],
+      [field]: value
     };
-      console.log(requestData)
-     try {
-     const response = await axios.post('http://localhost:3000/api/models/', requestData);
-      console.log('Respuesta:', response.data);
-      //  window.location.reload()
+    setDatos(nuevosDatos);
+  };
+
+  const handleRelacionChange = (formularioIndex, relacionIndex, field, value) => {
+    const nuevasRelaciones = [...relationship];
+    nuevasRelaciones[formularioIndex][relacionIndex][field] = value;
+    setRelationship(nuevasRelaciones);
+  };
+
+  const handleSubmit = async () => {
+    const jsonData = formularios.map((_, formularioIndex) => ({
+      name: nombre[formularioIndex],
+      data: datos[formularioIndex].map(campo => ({
+        name: campo.name || '',
+        type: campo.type || 'STRING',
+        allowNull: campo.allowNull || false,
+        unique: campo.unique || false,
+        defaultValue: campo.defaultValue || []
+      })),
+      relationship: relationship[formularioIndex]
+    }));
+
+    try {
+      // Realiza la solicitud HTTP a tu API usando Axios
+      const response = await axios.post('http://localhost:3000/api/models/', jsonData);
+
+      // Maneja la respuesta aquí si es necesario
+      console.log('Respuesta de la API:', response.data);
+
+      // Si deseas restablecer el formulario después de enviar los datos
+      setFormularios([]);
+      setNombre([]);
+      setDatos([[]]);
+      setRelationship([]);
     } catch (error) {
-      console.error('Error:', error);
+      // Maneja errores aquí
+      console.error('Error al enviar los datos a la API:', error);
     }
   };
 
   return (
-    <div className='containerBorder'>
-        <div className='container'>
-          {formularios.map((formulario, index) => (
-            <form key={index}>
-              <div className='margin'>
-                <label className='text'>
-                  Titulo:
-                  <input 
-                    className = 'input'
-                    type="text"
-                    required
-                    value={formulario.name}
-                    
-                    onChange={(e) => handleInputChange(index, 'name', e.target.value)}
-                  />
-                </label>
-              </div>
-              <div className='margin'>
-                <label className='text'>
-                  Tipo:
-                  <select
-                    
-                    value={formulario.tipo}
-                    onChange={(e) => handleInputChange(index, 'tipo', e.target.value)}
-                  >
-                    <option value="STRING">STRING</option>
-                    <option value="NUMBER">NUMBER</option>
-                    <option value="DATE">DATE</option>
-                    {/* Agrega otros tipos según tu necesidad */}
-                  </select>
-                </label >
-              </div>
-              <div className='margin'>
-                <label className='text'>
-                  Nombre del campo:
-                  <input 
-                    required
-                    className = 'input'
-                    type="text"
-                    value={formulario.nombre}
-                    onChange={(e) => handleInputChange(index, 'nombre', e.target.value)}
-                  />
-                </label>
-              </div>
-              <div className='margin'>
-                <label className='text'>
-                  Default value:
-                  <input 
-                    required
-                    className = 'input'
-                    type="text"
-                    value={formulario.defaultvalue}
-                    onChange={(e) => handleInputChange(index, 'default value', e.target.value)}
-                  />
-                </label>
-              </div>
-              <div className='text' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
-                <label style={{ display: 'flex', alignItems: 'center' }}>
-                   Null:
-                  <input className = 'input' 
-                    type="checkbox"
-                    checked={formulario.allowNull}
-                    onChange={(e) => handleInputChange(index, 'allowNull', e.target.checked)}
-                  />
-                </label>
-                
+    <div>
+      {formularios.map((_, formularioIndex) => (
+        <div key={formularioIndex}>
+          <form>
+            <label>
+              Nombre:
+              <input
+                type="text"
+                value={nombre[formularioIndex] || ''}
+                onChange={(e) => handleNombreChange(formularioIndex, e.target.value)}
+                required
+              />
+            </label>
+            <br />
 
-                <label style={{ display: 'flex', alignItems: 'center' }}>
-                  Unique:
-                  <input className = 'input'
-                    type="checkbox"
-                    checked={formulario.unique}
-                    onChange={(e) => handleInputChange(index, 'unique', e.target.checked)}
-                  />
-                </label>
-
-                <label style={{ display: 'flex', alignItems: 'center' }}>
-                  Relación:
+            <div>
+              <label>
+                Datos:
+              </label>
+              {datos[formularioIndex].map((campo, campoIndex) => (
+                <div key={campoIndex}>
                   <input
-                    className='input'
-                    type="checkbox"
-                    checked={formulario.relacion}
-                    onChange={(e) => handleRelacionChange(index, e.target.checked)}
+                    type="text"
+                    placeholder="Nombre del Campo"
+                    value={campo.name || ''}
+                    onChange={(e) => handleCampoChange(formularioIndex, campoIndex, 'name', e.target.value)}
                   />
-                </label>
-              </div>
-              {formulario.relacion &&  (
-                
-                <>
-                <form key={index}>
-                  {index === 0 &&(
-                      <label className='text'>
-                        Tipo de relacion:
-                        <select 
-                          
-                          value={formulario.relacionTipo }
-                          onChange={(e) => handleInputChange(index, 'relacionTipo', e.target.value)}
-                        > 
-                          <option value="none"  selected disabled hidden>seleccione</option>
-                          <option value='1a1' >1a1</option>
-                          <option value='1aM' >1aM</option>
-                          <option value='MaM'>MaM</option>
-                        </select>
-                      </label >
-                  )}
-                </form>
-                 
-                  <label className='text'>
-                    Relación Tabla Padre:
-                    <input className = 'input'
-                      type="text"
-                      value={formulario.relacionTabla1}
-                      onChange={(e) =>
-                        handleInputChange(index, 'relacionTabla1', e.target.value)
-                      }
+                  <label>
+                    Type:
+                    <select
+                      value={campo.type || 'STRING'}
+                      onChange={(e) => handleCampoChange(formularioIndex, campoIndex, 'type', e.target.value)}
+                    >
+                      <option value="STRING">STRING</option>
+                      <option value="NUMBER">NUMBER</option>
+                      <option value="DATE">DATE</option>
+                    </select>
+                  </label>
+                  <label>
+                    Allow Null:
+                    <input
+                      type="checkbox"
+                      checked={campo.allowNull || false}
+                      onChange={() => handleCampoChange(formularioIndex, campoIndex, 'allowNull', !campo.allowNull)}
                     />
                   </label>
-                  <label className='text'>
-                    Relación Tabla Hijo:
-                    <input className = 'input'
-                      type="text"
-                      value={formulario.relacionTabla2}
-                      onChange={(e) =>
-                        handleInputChange(index, 'relacionTabla2', e.target.value)
-                      }
+                  <label>
+                    Unique:
+                    <input
+                      type="checkbox"
+                      checked={campo.unique || false}
+                      onChange={() => handleCampoChange(formularioIndex, campoIndex, 'unique', !campo.unique)}
                     />
                   </label>
-                  
-                </>
-              )}
-            </form>
-          ))}
-            
-              <div className='button1'>
-                <button  onClick={handleAddFormulario}>Agregar Formulario</button>
-              </div>
-                <div className='button2'>
-                  <button onClick={handleSubmit}>Enviar</button>
+                  <input
+                    type="text"
+                    placeholder="defaulValue"
+                    value={campo.defaultValue || []}
+                    onChange={(e) => handleCampoChange(formularioIndex, campoIndex, 'defaultValue', e.target.value
+                      .split(',')
+                      .map(val => val.trim())
+                    )}
+                  />
+                  <button type="button" onClick={() => eliminarCampo(formularioIndex, campoIndex)}>Eliminar</button>
                 </div>
-           
+              ))}
+              <button type="button" onClick={() => agregarCampo(formularioIndex)}>Agregar Campo</button>
+            </div>
+            <br />
+
+            <div>
+              <label>
+                Relaciones:
+              </label>
+              {relationship[formularioIndex].map((relacion, relacionIndex) => (
+                <div key={relacionIndex}>
+                  <input
+                    type="text"
+                    placeholder="Tabla 1"
+                    value={relacion.tabla1 || ''}
+                    onChange={(e) => handleRelacionChange(formularioIndex, relacionIndex, 'tabla1', e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Tabla 2"
+                    value={relacion.tabla2 || ''}
+                    onChange={(e) => handleRelacionChange(formularioIndex, relacionIndex, 'tabla2', e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Tipo (1aM, Ma1, etc.)"
+                    value={relacion.tipo || ''}
+                    onChange={(e) => handleRelacionChange(formularioIndex, relacionIndex, 'tipo', e.target.value)}
+                  />
+                  <button type="button" onClick={() => eliminarRelacion(formularioIndex, relacionIndex)}>Eliminar</button>
+                </div>
+              ))}
+              <button type="button" onClick={() => agregarRelacion(formularioIndex)}>Agregar Relación</button>
+            </div>
+            <br />
+          </form>
+          <button type="button" onClick={() => eliminarFormulario(formularioIndex)}>Eliminar Formulario</button>
         </div>
-  </div>
+      ))}
+      <button type="button" onClick={agregarFormulario}>Generar Otro Formulario</button>
+      <button type="button" onClick={handleSubmit}>Enviar</button>
+    </div>
   );
-};
-export default Formulario;
+}

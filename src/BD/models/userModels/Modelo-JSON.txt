@@ -1,1 +1,0 @@
-{"name":["Modelo"],"data":[[{"name":"campo","type":"STRING","allowNull":false,"unique":false}]],"relationship":[{}]}

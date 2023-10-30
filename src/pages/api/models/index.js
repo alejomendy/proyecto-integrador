@@ -15,16 +15,26 @@ export default async function syncDBAPI(req,res) {
         // if (route !== false && relationship !== null){
         //     await syncModelsRelation(name);
         // }
-
-        const route = await generateModel(req.body.name, req.body.data, req.body.relationship, req.body);
-
-
-        if (route !== false && req.body.relationship !== null){
-            await syncModelsRelation(req.body.name);
+        var name = [];
+        var data = [];
+        var relationship = [];
+        for (let index = 0; index < req.body.length; index++) {
+            name.push(req.body[index].name);
+            data.push(req.body[index].data);
+            relationship.push(req.body[index].relationship);
+            
         }
 
-        console.log("se creo el modelo en la ruta: ", route);
-        res.json({msj:route});
+        const route = await generateModel(name, data, relationship, req.body);
+        
+        
+
+        // if (route !== false && req.body.relationship !== null){
+        //     await syncModelsRelation(req.body.name);
+        // }
+
+        // console.log("se creo el modelo en la ruta: ", route);
+        // res.json({msj:route});
     }
     else{
         res.status(404).json({msj:'Page not found'})

@@ -37,7 +37,7 @@ const Sequelize = require('sequelize');
       
 const ${name[index]} = sequelize.define('${name[index]}', {
 ${data[index].map(item =>
-  `${item.name}: { type: Sequelize.${item.type}, allowNull: ${item.allowNull}, unique: ${item.unique || false} }`).join(',\n  ')}}, 
+  `${item.name}: { type: Sequelize.${item.type}, allowNull: ${item.allowNull}, unique: ${item.unique || false}, defaultValue: '${item.defaultValue || null}'  }`).join(',\n  ')}}, 
 {timestamps:false,
 tableName: "${name[index]}"});
 
