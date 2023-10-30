@@ -2,11 +2,15 @@
 import React, { useState, useEffect } from 'react';
 
 const JsonViewer = () => {
+  const [formData, setFormData] = useState({
+    userId: localStorage.getItem(id),
+    // Agrega aquí más campos según tus necesidades
+  });
   const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
     // Cargar el archivo JSON
-    fetch('ruta/del/archivo.json')
+    fetch('http://localhost:3000/api/users/models')
       .then(response => response.json())
       .then(data => setJsonData(data))
       .catch(error => console.error('Error al cargar el archivo JSON:', error));

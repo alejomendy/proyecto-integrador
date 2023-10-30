@@ -8,7 +8,7 @@ export default async function findModel(req, res){
                 var request = await findModelByUser(req.body.id)
                 if( request !== false){
                     console.log('Modelo encontrado', request)
-                    res.status(200).json({id: request.id})
+                    res.status(200).json({"modelo: ": request})
                 }else{
                     res.status(401).json({msg: 'Modelo no encontrado'})
                 }
