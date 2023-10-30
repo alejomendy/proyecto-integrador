@@ -1,14 +1,14 @@
 const fs = require('fs');
 
 
-export default function generateModel(name, data, relationship, body){
+export default function generateModel(name, data, relationship,){
   var routes = []
   if (name !== null && data !== null){
     for (let index = 0; index < name.length; index++) {
       var modelCode = ``
       var relationshipCode = ``
-      if( relationship[index] !== undefined ){
-        // console.log('relationship:  ', relationship)
+      if( relationship[index] !== undefined  ){
+        console.log('relationship:  ', relationship[index])
         // console.log('relacion tipo: ',relationship[index].tipo)
         // console.log('Nombre: ',relationship[index].tabla1)
         if(relationship[index].tabla1 === name[index] || relationship[index].tabla2 === name[index] ){
@@ -45,8 +45,7 @@ module.exports ={
   ${name[index]},
 }
 `;  
-    body = JSON.stringify(body)
-    fs.writeFileSync(`./src/BD/models/userModels/${name[index]}-JSON.txt`, body);
+    
     // Se agrega al codigo la relacion 
     modelCode = modelCode + relationshipCode
       // Escribe el código en un archivo modelByUser.js.

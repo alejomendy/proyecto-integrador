@@ -2,16 +2,12 @@
 import style from './css/Loguin.form.css'
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
-const LoginForm = () => {
-  //   const [dropdown, setDropdown]= useState(false);
 
-  // const abrirCerrarDropdown=()=>{
-  //   setDropdown(!dropdown)
-  // }
+const LoginForm = () => {
+
   const [formData, setFormData] = useState({
-    usuario: '',
-    campo2: '',
+    name: '',
+    password: '',
     // Agrega aquí más campos según tus necesidades
   });
 
@@ -23,18 +19,21 @@ const LoginForm = () => {
     });
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
   
     // Aquí puedes hacer la solicitud a la API
-    axios.post('http://localhost:3000/api/user/login', formData)
+    axios.post('http://localhost:3000/api/users/login', formData)
       .then(response => {
-        console.log('Respuesta de la API:', response.data);
-  
-        // Si la respuesta de la API indica que el usuario es válido
-        if (response.data.usuarioValido) {
+        console.log('Respuesta de la API:', response.data.id);
+
+        //Si la respuesta de la API indica que el name es válido
+        if (response.data.id) {
           // Redirige a la página deseada
-          window.location.href = '/otraPagina';
+          localStorage.setItem('id', JSON.stringify(response.data.id))
+          window.location.href = '/crearModelos';
         }
       })
       .catch(error => {
@@ -50,14 +49,14 @@ const LoginForm = () => {
         <br />
       <form onSubmit={handleSubmit} className='form' > 
         <div >
-        <label htmlFor="usuario"  className='centered-div '><p>Usuario</p></label>
+        <label htmlFor="name"  className='centered-div '><p>name</p></label>
           <input
             className='input'
             type="text"
-            id="usuario"
-            name="usuario"
+            id="name"
+            name="name"
             required
-            value={formData.usuario}
+            value={formData.name}
             onChange={handleChange}
           />
         </div> 
@@ -74,11 +73,8 @@ const LoginForm = () => {
             onChange={handleChange}
           />
         </div>
-
-        
-        
           <br />
-          <button type="submit" className='button ' >Enviar</button>
+          <button type="submit" className='button '>Enviar</button>
         
       </form>
     </div>

@@ -1,7 +1,6 @@
 import { syncDB } from "@/BD/bd";
-import { Users } from "@/BD/models/UserModel";
-
-
+import { Users } from "@/BD/models/User";
+import { ModelByUser } from "@/BD/models/Modelos"
 
 
 export default async function syncDBAPI(req,res) {

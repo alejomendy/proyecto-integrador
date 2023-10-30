@@ -46,7 +46,8 @@ export default function Formulario() {
       type: 'STRING',
       allowNull: false,
       unique: false,
-      defaultValue: []
+      defaultValue: [],
+      
     });
     setDatos(nuevosDatos);
   };
@@ -96,9 +97,13 @@ export default function Formulario() {
         type: campo.type || 'STRING',
         allowNull: campo.allowNull || false,
         unique: campo.unique || false,
-        defaultValue: campo.defaultValue || []
+        defaultValue: campo.defaultValue || [],
+        
+        
       })),
-      relationship: relationship[formularioIndex]
+      relationship: relationship[formularioIndex],
+      id: localStorage.getItem('id'),
+      
     }));
 
     try {
@@ -198,22 +203,24 @@ export default function Formulario() {
                 <div key={relacionIndex}>
                   <input
                     type="text"
-                    placeholder="Tabla 1"
+                    placeholder="Tabla Padre"
                     value={relacion.tabla1 || ''}
                     onChange={(e) => handleRelacionChange(formularioIndex, relacionIndex, 'tabla1', e.target.value)}
                   />
                   <input
                     type="text"
-                    placeholder="Tabla 2"
+                    placeholder="Tabla Hijo"
                     value={relacion.tabla2 || ''}
                     onChange={(e) => handleRelacionChange(formularioIndex, relacionIndex, 'tabla2', e.target.value)}
                   />
-                  <input
-                    type="text"
-                    placeholder="Tipo (1aM, Ma1, etc.)"
-                    value={relacion.tipo || ''}
+                  <select
+                    value={relacion.tipo || '1a1'}
                     onChange={(e) => handleRelacionChange(formularioIndex, relacionIndex, 'tipo', e.target.value)}
-                  />
+                    >
+                    <option value="1a1">1a1</option>
+                    <option value="1aM">1aM</option>
+                    <option value="MaM">MaM</option>
+                  </select>
                   <button type="button" onClick={() => eliminarRelacion(formularioIndex, relacionIndex)}>Eliminar</button>
                 </div>
               ))}
