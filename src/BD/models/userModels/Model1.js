@@ -2,11 +2,11 @@
 const { sequelize } = require("../../bd");
 const Sequelize = require('sequelize');
       
-const Modelo1 = sequelize.define('Modelo1', {
+const Model1 = sequelize.define('Model1', {
 campo1: { type: Sequelize.STRING, allowNull: false, unique: false, defaultValue: ''  }}, 
 {timestamps:false,
-tableName: "Modelo1"});
+tableName: "Model1"});
 
 module.exports ={ 
-  Modelo1,
+  Model1,
 }

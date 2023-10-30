@@ -22,9 +22,7 @@ export default async function syncDBAPI(req,res) {
         var name = [];
         var data = [];
         var relationship = [];
-        
         createModelByUser(JSON.stringify(req.body),req.body[0].id)
-
         console.log('Body: ',JSON.stringify(req.body));
         console.log('id: ' , req.body[0].id )
         for (let index = 0; index < req.body.length; index++) {
@@ -36,8 +34,8 @@ export default async function syncDBAPI(req,res) {
         
         
 
-        if (route !== false && req.body.relationship !== null){
-            await syncModelsRelation(req.body.name);
+        if (route !== false && relationship !== null){
+            await syncModelsRelation(name);
         }
 
         console.log("se creo el modelo en la ruta: ", route);
