@@ -35,23 +35,16 @@
 
 // export default App;
 import React from 'react';
-import JsonVisualizer from '../components/jsonvisualizer';
+import JsonViewer from '../components/JsonViewer';
 
 const App = () => {
     return (
-        <><nav>
-            <div className="topnav">
-
-                <a className="active" href="../inicio">Inicio</a>
-                <a href="../modelos">Modelos</a>
-                <a href="../crearModelos">Crear Modelo</a>
-            </div>
-        </nav><br /><div className="app">
-                <h1>Visualización de JSON</h1>
-                <br />
-                <JsonVisualizer />
-            </div></>
+        <div className="App">
+            <h1>Visualizador de JSON</h1>
+            <JsonViewer />
+        </div>
     );
 }
 
 export default App;
+
