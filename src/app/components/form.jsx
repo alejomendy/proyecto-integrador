@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react';
 import axios from 'axios';
-
+import style from '../components/css/form.css'
 export default function Formulario() {
   const [formularios, setFormularios] = useState([]);
   const [nombre, setNombre] = useState([]);
@@ -120,12 +120,12 @@ export default function Formulario() {
   };
 
   return (
-    <div>
+    <div className='container'>
       {formularios.map((_, formularioIndex) => (
-        <div key={formularioIndex}>
+        <div key={formularioIndex} className='form'>
           <form>
             <label>
-              Nombre:
+              <h1 className='text'>Nombre de la tabla:</h1>
               <input
                 type="text"
                 value={nombre[formularioIndex] || ''}
@@ -137,7 +137,7 @@ export default function Formulario() {
 
             <div>
               <label>
-                Datos:
+                <h1>Datos:</h1>
               </label>
               {datos[formularioIndex].map((campo, campoIndex) => (
                 <div key={campoIndex}>
@@ -148,7 +148,7 @@ export default function Formulario() {
                     onChange={(e) => handleCampoChange(formularioIndex, campoIndex, 'name', e.target.value)}
                   />
                   <label>
-                    Type:
+                    <h1>Type:</h1>
                     <select
                       value={campo.type || 'STRING'}
                       onChange={(e) => handleCampoChange(formularioIndex, campoIndex, 'type', e.target.value)}
@@ -159,7 +159,7 @@ export default function Formulario() {
                     </select>
                   </label>
                   <label>
-                    Allow Null:
+                    <h1>Allow Null:</h1>
                     <input
                       type="checkbox"
                       checked={campo.allowNull || false}
@@ -167,7 +167,7 @@ export default function Formulario() {
                     />
                   </label>
                   <label>
-                    Unique:
+                    <h1>Unique:</h1>
                     <input
                       type="checkbox"
                       checked={campo.unique || false}
@@ -183,16 +183,16 @@ export default function Formulario() {
                       .map(val => val.trim())
                     )}
                   />
-                  <button type="button" onClick={() => eliminarCampo(formularioIndex, campoIndex)}>Eliminar</button>
+                  <button type="button" className='button' onClick={() => eliminarCampo(formularioIndex, campoIndex)}>Eliminar</button>
                 </div>
               ))}
-              <button type="button" onClick={() => agregarCampo(formularioIndex)}>Agregar Campo</button>
+              <button type="button"  className='button' onClick={() => agregarCampo(formularioIndex)}>Agregar Campo</button>
             </div>
             <br />
 
             <div>
               <label>
-                Relaciones:
+                <h1>Relaciones:</h1>
               </label>
               {relationship[formularioIndex].map((relacion, relacionIndex) => (
                 <div key={relacionIndex}>
@@ -224,8 +224,10 @@ export default function Formulario() {
           <button type="button" onClick={() => eliminarFormulario(formularioIndex)}>Eliminar Formulario</button>
         </div>
       ))}
-      <button type="button" onClick={agregarFormulario}>Generar Otro Formulario</button>
-      <button type="button" onClick={handleSubmit}>Enviar</button>
+      <div > 
+        <button type="button"  onClick={agregarFormulario}>Generar un Formulario</button>
+      </div>
+      <button type="button"  onClick={handleSubmit}>Enviar</button>
     </div>
   );
 }

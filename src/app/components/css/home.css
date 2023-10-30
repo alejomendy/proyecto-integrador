@@ -1,4 +1,4 @@
-.container {
+/* .container {
   text-align: center;
   background-color: #5c5d5c;
   margin: auto;
@@ -27,9 +27,9 @@
 .text {
   font-size: 18px;
   color: #000000; /* Cambia el color del texto a gris */
-  text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto */
-}
-.button1, .button2 {
+  /* text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto */
+/* } */
+/* .button1, .button2 {
   font-size: 20px;
   width: 30%;
   padding: 15px 25px; 
@@ -40,5 +40,5 @@
   font-size: 15px;
   cursor: pointer;
   margin: 10px auto; /* Centra los botones horizontalmente */
-}
+/* }  */
 

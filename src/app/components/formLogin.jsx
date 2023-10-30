@@ -45,6 +45,7 @@ const LoginForm = () => {
   return (
     <div className='centered-div'>
         <br />
+        
         <h2 className='h2'>Iniciar Sesión</h2>
         <br />
       <form onSubmit={handleSubmit} className='form' > 

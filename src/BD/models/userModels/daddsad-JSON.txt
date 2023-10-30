@@ -1,0 +1,1 @@
+[{"name":"daddsad","data":[{"name":"dadadasdsa","type":"STRING","allowNull":false,"unique":false,"defaultValue":["dsadsadsa"]}],"relationship":[]}]
