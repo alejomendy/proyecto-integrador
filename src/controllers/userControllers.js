@@ -1,7 +1,8 @@
 import { syncDB } from "@/BD/bd";
-import { Users } from "@/BD/models/UserModel";
+import { Users } from "@/BD/models/User";
 
-const createUser = async (name , password, models) => {
+
+const createUser = async (name , password) => {
     try {
         const response = await Users.findOne({where: {name: name, password: password}})
         console.log(response)

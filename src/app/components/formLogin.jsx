@@ -32,8 +32,8 @@ const LoginForm = () => {
         //Si la respuesta de la API indica que el name es válido
         if (response.data.id) {
           // Redirige a la página deseada
+          localStorage.setItem('id', JSON.stringify(response.data.id))
           window.location.href = '/crearModelos';
-          console.log('tamo bien')
         }
       })
       .catch(error => {

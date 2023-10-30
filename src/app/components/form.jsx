@@ -46,7 +46,8 @@ export default function Formulario() {
       type: 'STRING',
       allowNull: false,
       unique: false,
-      defaultValue: []
+      defaultValue: [],
+      
     });
     setDatos(nuevosDatos);
   };
@@ -98,8 +99,10 @@ export default function Formulario() {
         unique: campo.unique || false,
         defaultValue: campo.defaultValue || [],
         
+        
       })),
-      relationship: relationship[formularioIndex]
+      relationship: relationship[formularioIndex],
+      id: localStorage.getItem('id'),
       
     }));
 

@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 
-export default function generateModel(name, data, relationship, body){
+export default function generateModel(name, data, relationship,){
   var routes = []
   if (name !== null && data !== null){
     for (let index = 0; index < name.length; index++) {
@@ -45,8 +45,7 @@ module.exports ={
   ${name[index]},
 }
 `;  
-    body = JSON.stringify(body)
-    fs.writeFileSync(`./src/BD/models/userModels/${name[index]}-JSON.txt`, body);
+    
     // Se agrega al codigo la relacion 
     modelCode = modelCode + relationshipCode
       // Escribe el código en un archivo modelByUser.js.

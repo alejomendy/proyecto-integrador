@@ -1,1 +1,0 @@
-"[{\"name\":\"Modelo1\",\"data\":[{\"name\":\"campo1\",\"type\":\"STRING\",\"allowNull\":false,\"unique\":false,\"defaultValue\":[]}],\"relationship\":[{\"tabla1\":\"Modelo1\",\"tabla2\":\"Modelo2\",\"tipo\":\"1a1\"}]},{\"name\":\"Modelo2\",\"data\":[{\"name\":\"campo2\",\"type\":\"STRING\",\"allowNull\":false,\"unique\":false,\"defaultValue\":[]}],\"relationship\":[]}]"
