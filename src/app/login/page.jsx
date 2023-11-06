@@ -9,10 +9,11 @@ const Login = () => {
     console.log('Usuario:', userData.username);
     console.log('Contraseña:', userData.password);
   };
-
+    
   return (
+      
     <><div>
-
+        
       <LoginForm />
     </div>
     </>
