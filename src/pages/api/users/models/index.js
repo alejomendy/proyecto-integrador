@@ -7,6 +7,7 @@ export default async function findModel(req, res){
         try {
             console.log('usuario id',userId)
             var request = await findModelByUser(userId)
+            console.log(request)
             res.status(200).json({"modelo: ": request})
             // if (userId !== null ){
             //     console.log('el body: ',req.body)
