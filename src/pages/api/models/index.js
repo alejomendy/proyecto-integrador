@@ -28,7 +28,7 @@ export default async function syncDBAPI(req,res) {
         for (let index = 0; index < req.body.length; index++) {
             name.push(req.body[index].name);
             data.push(req.body[index].data);
-            relationship.push(req.body[index].relationship[index]);  
+            relationship.push(req.body[index].relationship[0]);  
         }
         const route = await generateModel(name, data, relationship);
         
