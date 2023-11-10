@@ -232,7 +232,7 @@ export default function Formulario() {
         </div>
       ))}
       <div > 
-        <button type="button"  onClick={agregarFormulario}>Generar un Formulario</button>
+        <button type="button"  onClick={agregarFormulario}>Agregar otra tabla</button>
       </div>
       <button type="button"  onClick={handleSubmit}>Enviar</button>
     </div>

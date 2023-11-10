@@ -1,5 +1,5 @@
 "use client"
-import Image from 'next/image'
+import Image from 'next/image' 
 import react, { useState,useEffect,usere } from 'react'
 import Formulario from '../components/form'
 

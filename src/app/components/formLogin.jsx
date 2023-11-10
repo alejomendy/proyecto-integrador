@@ -33,7 +33,7 @@ const LoginForm = () => {
         if (response.data.id) {
           // Redirige a la página deseada
           localStorage.setItem('id', JSON.stringify(response.data.id))
-          window.location.href = '/crearModelos';
+          window.location.href = '/inicio';
         }
       })
       .catch(error => {
@@ -49,7 +49,7 @@ const LoginForm = () => {
         <br />
       <form onSubmit={handleSubmit} className='form' > 
         <div >
-        <label htmlFor="name"  className='centered-div '><p>name</p></label>
+        <label htmlFor="name"  className='centered-div '><p>Nombre de usuario</p></label>
           <input
             className='input'
             type="text"
