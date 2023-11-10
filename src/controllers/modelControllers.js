@@ -12,17 +12,18 @@ const createModelByUser = async (modelo, userId) => {
 }
 
 const findModelByUser = async(userId) => {
-    const modelos = []
+    
     try {
         console.log('usuario id controller',userId)
         const response = await ModelByUser.findAll({where: {userId: userId}})
-        console.log('response: ', response.length)
+        //console.log('aca tamo en el response:', response[0].dataValues.modelo)
+        const modelos = []
         for (let index = 0; index < response.length; index++) {
-            
             const modelo = response[index].dataValues.modelo;
             modelos.push(modelo)
             
         }
+        console.log('los modelos: ', modelos)
         return modelos
         
     } catch (error) {

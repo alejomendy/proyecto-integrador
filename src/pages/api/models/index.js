@@ -22,6 +22,7 @@ export default async function syncDBAPI(req,res) {
         var name = [];
         var data = [];
         var relationship = [];
+        
         createModelByUser(JSON.stringify(req.body),req.body[0].id)
         console.log('Body: ',JSON.stringify(req.body));
         console.log('id: ' , req.body[0].id )

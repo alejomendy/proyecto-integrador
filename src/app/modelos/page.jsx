@@ -35,13 +35,14 @@
 
 // export default App;
 import React from 'react';
-import JsonViewer from '../components/JsonViewer';
+// import JsonViewer from '../components/JsonViewer';
+import Visualizer from '../components/visualizar';
 
 const App = () => {
     return (
-        <div className="App">
-            <h1>Visualizador de JSON</h1>
-            <JsonViewer />
+        <div>
+            <h1 className="center">Visualizador de JSON</h1>
+            <Visualizer/>
         </div>
     );
 }
