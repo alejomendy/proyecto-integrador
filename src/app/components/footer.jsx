@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>Este es el footer de tu aplicación.</p>
+        <h1>Proyecto-Next</h1>
         <img src="/favicon.ico" alt="Este es el icono de nuestra pagina" /> 
       </div>
     </footer>
