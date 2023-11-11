@@ -52,7 +52,6 @@ const Visualizer = () => {
                     <li>{`Permite nulos: ${modeloData.allowNull}`}</li>
                     <li>{`Único: ${modeloData.unique}`}</li>
                     <li>{`Valor por defecto: ${modeloData.defaultValue}`}</li>
-                    {/* Agrega más detalles según tus necesidades */}
                   </ul>
                   <br />
                 </div>

@@ -73,6 +73,15 @@ h1{
   color: white;
 }
 
+h5{
+  color: white;
+}
+
+.logout{
+  margin-left: 95%;
+}
+
+
 .center{
   text-align: center;
 }
