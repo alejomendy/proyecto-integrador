@@ -7,23 +7,22 @@ const Visualizer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/api/users/models');
-        
-        if (!response.ok) {
-          throw new Error(`Error al cargar los datos: ${response.statusText}`);
-        }
-
-        const jsonResponseList = await response.json();
-        
-
-        // Realizar el análisis adicional para convertir los strings en objetos JavaScript
-        const parsedData = jsonResponseList.modelo.map((jsonString) => JSON.parse(jsonString));
-
-        setData(parsedData);
-      } catch (error) {
-        console.error('Error al obtener datos desde la API', error);
+      const idUsuario = JSON.parse(localStorage.getItem('id'));
+      
+      const response = await fetch('http://localhost:3000/api/users/models',{method:'POST',headers:{'Content-Type': 'application/json'},body: JSON.stringify({userId: idUsuario})});
+      
+      if (!response.ok) {
+        throw new Error(`Error al cargar los datos: ${response.statusText}`);
       }
+
+      const jsonResponseList = await response.json();
+      
+
+      // Realizar el análisis adicional para convertir los strings en objetos JavaScript
+      const parsedData = jsonResponseList.modelo.map((jsonString) => JSON.parse(jsonString));
+
+      setData(parsedData);
+      
     };
 
     fetchData();

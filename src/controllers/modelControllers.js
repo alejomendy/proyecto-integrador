@@ -23,7 +23,7 @@ const findModelByUser = async(userId) => {
             modelos.push(modelo)
             
         }
-        console.log('los modelos: ', modelos)
+        //console.log('los modelos: ', modelos)
         return modelos
         
     } catch (error) {
@@ -32,7 +32,23 @@ const findModelByUser = async(userId) => {
     }
 }
 
+const findModelById = async(modelId) => {
+    console.log("model id:",modelId)
+    const modelos=[]
+    try {
+        const response = await ModelByUser.findByPk(modelId)
+        modelos.push(response.dataValues.modelo)
+        return modelos
+        
+    } catch (error) {
+        console.log('Error al encontrar el JSON (catch)')
+        return false 
+    }
+}
+
+
 module.exports = {
     createModelByUser, 
     findModelByUser,
+    findModelById,
 }

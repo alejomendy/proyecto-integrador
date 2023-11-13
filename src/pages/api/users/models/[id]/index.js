@@ -1,13 +1,16 @@
-import  {findModelByUser} from "@/controllers/modelControllers.js"
+import  {findModelById} from "@/controllers/modelControllers.js"
+
 
 export default async function findModel(req, res){
 
     if(req.method === 'POST'){
-        const userId = req.body.userId
+        const modelId = req.query.id
         try {
-            if (userId !== null ){
-                const request = await findModelByUser(userId)
-                if( request !== false){
+            if (modelId !== null ){
+                const request = await findModelById(modelId)
+            
+                if( request !== false && request !== null){
+                    
                     res.json({"modelo": request})
                 }else{
                     res.status(401).json({msg: 'Modelo no encontrado '})
