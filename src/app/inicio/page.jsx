@@ -1,18 +1,11 @@
+import NavBar from "../components/nav";
+import VerificarCuenta from "../components/verificarCuenta";
+
 export default function Inicio(){
- 
     return (
-        <main >  
-             <nav>    
-              <div className="topnav" >
-                
-                  <a className="active" href="../inicio">Inicio</a>
-                  <a href="../modelos">Modelos</a>
-                  <a href="../crearModelos">Crear Modelo</a>
-              </div>
-            </nav>
-          
-           
-          
-        </main>
-      )
-   }
+        <div>
+            <NavBar/>
+            <VerificarCuenta/>
+        </div>
+    )
+}

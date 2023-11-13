@@ -33,6 +33,8 @@ const LoginForm = () => {
         if (response.data.id) {
           // Redirige a la página deseada
           localStorage.setItem('id', JSON.stringify(response.data.id))
+          localStorage.setItem('name',JSON.stringify(response.data.name))
+          localStorage.setItem('password',JSON.stringify(response.data.password))
           window.location.href = '/inicio';
         }
       })

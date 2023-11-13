@@ -14,12 +14,19 @@
   overflow: hidden;
 }
 .topnav a {
-  float: left;
   color: rgb(80, 78, 78);
-  text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+ 
+}
+.cambio{
+  background-color: hsla(0, 0%, 0%, 0.3);
+}
+.alinearI{
+  float: left;
+  text-align: center;
+ 
 }
 .topnav a.active {
   background-color: rgb(51, 50, 51);
@@ -65,4 +72,20 @@ html {
   width: 20px; /* Ajusta el tamaño según sea necesario */
   height: 20px; /* Ajusta el tamaño según sea necesario */
 }
-.wrapper {     min-height: 100vh;     display: flex;     flex-direction: column; }
+h1{
+  color: white;
+}
+
+h5{
+  color: white;
+}
+
+.logout{
+  top: 0;
+  right: 0;
+  float: right;
+}
+
+.center{
+  text-align: center;
+}

@@ -8,17 +8,17 @@ export default async function login(req, res){
                 var request = await loginUser(req.body.name, req.body.password)
                 if( request !== false){
                     console.log('user encontrado', request)
-                    res.status(200).json({id: request.id})
+                    res.status(200).json({id: request.id, name: request.name, password: request.password})
                 }else{
                     res.status(401).json({msg: 'Usuario no encontrado'})
                 }
             }
             else{
-                res.json({msg: 'Error, datos nulos'}).status(400)
+                res.status(401).json({msg: 'Error, datos nulos'})
                 console.log('Error, datos nulos')
             }
         } catch (error) {
-            res.status(400).json({msg: 'Hubo un error al iniciar sesion'})
+            res.status(401).json({msg: 'Hubo un error al iniciar sesion'})
         }
         
     }

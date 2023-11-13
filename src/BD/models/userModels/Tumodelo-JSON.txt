@@ -1,1 +1,0 @@
-[{"name":"Tumodelo","data":[{"name":"dsadsa","type":"STRING","allowNull":false,"unique":true,"defaultValue":["ssssss"]}],"relationship":[{"tabla1":"Tabla1","tabla2":"Tabla2","tipo":"1a1"}]},{"name":"Tabla2","data":[{"name":"dsadsadas","type":"STRING","allowNull":true,"unique":false,"defaultValue":["sssaaaaa"]}],"relationship":[]}]

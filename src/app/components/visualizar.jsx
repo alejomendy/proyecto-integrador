@@ -1,16 +1,15 @@
 'use client'
 import { useEffect, useState } from 'react';
-import styles from '../../components/css/Visualizer.module.css';
+import styles from './css/Visualizer.module.css';
 
-
-const VisualizerId = ({params}) => {
+const Visualizer = () => {
   const [data, setData] = useState(null);
-  const { id } = params
 
   useEffect(() => {
     const fetchData = async () => {
+      const idUsuario = JSON.parse(localStorage.getItem('id'));
       
-      const response = await fetch(`http://localhost:3000/api/users/models${id}`,{method:'POST',headers:{'Content-Type': 'application/json'}});
+      const response = await fetch('http://localhost:3000/api/users/models',{method:'POST',headers:{'Content-Type': 'application/json'},body: JSON.stringify({userId: idUsuario})});
       
       if (!response.ok) {
         throw new Error(`Error al cargar los datos: ${response.statusText}`);
@@ -66,4 +65,4 @@ const VisualizerId = ({params}) => {
 };
 
 
-export default VisualizerId;
+export default Visualizer;
