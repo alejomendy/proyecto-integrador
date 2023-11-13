@@ -20,6 +20,9 @@
   font-size: 17px;
  
 }
+.cambio{
+  background-color: hsla(0, 0%, 0%, 0.3);
+}
 .alinearI{
   float: left;
   text-align: center;

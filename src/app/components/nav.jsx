@@ -15,6 +15,7 @@ export default function NavBar(){
                     <a className="active alinearI" href="../inicio">Inicio</a>
                     <a href="../modelos">Modelos</a>
                     <a href="../crearModelos">Crear Modelo</a>
+                    <a href="../HTTPstreaming">HTTPstreaming</a>
                     <a className="logout" ><button onClick={logout} className='logout'><img src="https://img.pikbest.com/element_our/20230309/bg/ed729112ee4da.png!f305cw" alt="logout" width={35} height={35}/>
                     <h5>Logout</h5></button></a>
                     
