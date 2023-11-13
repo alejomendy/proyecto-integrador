@@ -44,14 +44,7 @@ const  VerificarCuenta = () =>{
                 router.push('/login')
               }
       }, [])
-      return (
-        
-        <div>
-          <button onClick={logout} className='logout'><img src="https://img.pikbest.com/element_our/20230309/bg/ed729112ee4da.png!f305cw" alt="logout" width={35} height={35}/>
-          <h5>Logout</h5></button>
-          <h1 id="welcome-message" className='center'></h1>
-        </div>
-      )
+      return (<h1 id="welcome-message" className='center'></h1>)
 }
 
 export default VerificarCuenta;

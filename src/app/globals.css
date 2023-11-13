@@ -14,12 +14,16 @@
   overflow: hidden;
 }
 .topnav a {
-  float: left;
   color: rgb(80, 78, 78);
-  text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+ 
+}
+.alinearI{
+  float: left;
+  text-align: center;
+ 
 }
 .topnav a.active {
   background-color: rgb(51, 50, 51);
@@ -78,9 +82,10 @@ h5{
 }
 
 .logout{
-  margin-left: 95%;
+  top: 0;
+  right: 0;
+  float: right;
 }
-
 
 .center{
   text-align: center;

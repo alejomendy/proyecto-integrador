@@ -6,8 +6,8 @@ import Visualizer from '../components/visualizar';
 const App = () => {
     return (
         <div>
-            <VerificarCuenta/>
             <NavBar/>
+            <VerificarCuenta/>
             <h1 className="center">Visualizador de JSON</h1>
             <Visualizer/>
         </div>

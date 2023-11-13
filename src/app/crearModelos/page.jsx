@@ -9,8 +9,8 @@ export default function Home() {
 
   return (
     <main >  
-        <VerificarCuenta/>
         <NavBar/>
+        <VerificarCuenta/>
         <Formulario/>
     </main>
   )
